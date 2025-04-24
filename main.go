@@ -3,11 +3,17 @@ package main
 import (
 	"log"
 
+	"github.com/altTux5/expense-tracker/config"
+	"github.com/altTux5/expense-tracker/internal/db"
 	"github.com/altTux5/expense-tracker/routes"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+
+	config.LoadConfig()
+
+	db.InitDB()
 
 	r := gin.Default()
 	routes.SetupRoutes(r)
