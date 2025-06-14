@@ -16,7 +16,12 @@ type DBConfig struct {
 	SSLMode  string
 }
 
+type JWTConfig struct {
+	JWTSecret string
+}
+
 var DB DBConfig
+var JWTConf JWTConfig
 
 func LoadConfig() {
 	// Load .env file
@@ -32,6 +37,10 @@ func LoadConfig() {
 		Password: os.Getenv("DB_PASSWORD"),
 		Name:     os.Getenv("DB_NAME"),
 		SSLMode:  os.Getenv("DB_SSLMODE"),
+	}
+
+	JWTConf = JWTConfig{
+		JWTSecret: os.Getenv("JWT_SECRET"),
 	}
 
 	log.Println("Environment variables loaded successfully ✅")
